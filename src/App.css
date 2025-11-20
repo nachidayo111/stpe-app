@@ -1,0 +1,119 @@
+.App {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+  padding: 2rem;
+  background: #f0f4f8;
+  min-height: 100vh;
+}
+
+h1 {
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+.card {
+  background: #fff;
+  padding: 1.5rem 2rem;
+  margin: 1rem auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  max-width: 300px;
+}
+
+button {
+  padding: 0.6rem 1.2rem;
+  margin-top: 0.5rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #4f46e5;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: #4338ca;
+}
+
+.disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+}
+
+.progress-container {
+  width: 100%;
+  height: 20px;
+  background-color: #eee;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 0.5rem 0;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  border-radius: 10px;
+  transition: width 0.3s;
+}
+/* 既存スタイルはそのまま */
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-around;
+  padding: 0.5rem 0;
+  box-shadow: 0 -2px 6px rgba(0,0,0,0.1);
+}
+
+.footer button {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  color: #6b7280;
+  transition: color 0.2s;
+}
+
+.footer button.active {
+  color: #4f46e5;
+  font-weight: bold;
+}
+
+.main-content {
+  padding-bottom: 60px; /* フッター分の余白 */
+}
+.header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: #fff;
+  padding: 0.5rem 1rem;
+  border-bottom-left-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  text-align: right;
+  z-index: 100;
+  font-size: 0.9rem;
+}
+
+.main-content {
+  padding-top: 3rem; /* ヘッダーの高さ分余白を確保 */
+  padding-bottom: 60px; /* フッター分の余白 */
+}
+.status-label {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background-color: rgba(255, 255, 255, 0.9); /* 半透明白背景で目立たせる */
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  font-size: 0.9rem;
+  text-align: right;
+  color: #000; /* 文字を黒に */
+  z-index: 100;
+}
