@@ -1,23 +1,36 @@
-.App {
+:root {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #000;
+  background-color: #b58900; /* 濃い黄色 */
+}
+
+body {
+  margin: 0;
+  font-family: inherit;
+  background-color: #b58900;
+}
+
+.App {
   text-align: center;
-  padding: 2rem;
-  background: #f0f4f8;
   min-height: 100vh;
+  padding: 2rem;
+  background: #b58900;
+  position: relative;
 }
 
 h1 {
-  color: #333;
+  color: #000;
   margin-bottom: 2rem;
 }
 
 .card {
-  background: #fff;
+  background: rgba(255, 255, 255, 0.85);
   padding: 1.5rem 2rem;
   margin: 1rem auto;
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   max-width: 300px;
+  color: #000;
 }
 
 button {
@@ -56,14 +69,13 @@ button:hover {
   border-radius: 10px;
   transition: width 0.3s;
 }
-/* 既存スタイルはそのまま */
 
 .footer {
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.9);
   display: flex;
   justify-content: space-around;
   padding: 0.5rem 0;
@@ -85,35 +97,45 @@ button:hover {
 }
 
 .main-content {
-  padding-bottom: 60px; /* フッター分の余白 ;*/
-}
-.header {
-  position: fixed;
-  top: 0;
-  right: 0;
-  background-color: #fff;
-  padding: 0.5rem 1rem;
-  border-bottom-left-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  text-align: right;
-  z-index: 100;
-  font-size: 0.9rem;
+  padding-bottom: 60px; /* フッター分の余白 */
+  padding-top: 3rem; /* ヘッダーの高さ分 */
 }
 
-.main-content {
-  padding-top: 3rem; /* ヘッダーの高さ分余白を確保 */
-  padding-bottom: 60px; /* フッター分の余白 */
-}
 .status-label {
   position: absolute;
   top: 1rem;
   right: 1rem;
-  background-color: rgba(255, 255, 255, 0.9); /* 半透明白背景で目立たせる */
+  background-color: rgba(255, 255, 255, 0.9);
   padding: 0.5rem 1rem;
   border-radius: 12px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.2);
   font-size: 0.9rem;
-  text-align: right;
-  color: #000; /* 文字を黒に */
+  color: #000;
   z-index: 100;
+}
+.footer {
+  position: fixed;      /* 常に画面下に固定 */
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.9);
+  display: flex;
+  justify-content: space-around;
+  padding: 0.5rem 0;
+  box-shadow: 0 -2px 6px rgba(0,0,0,0.1);
+  z-index: 999;          /* 背景やオーバーレイより前面 */
+}
+
+.footer button {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  color: #6b7280;
+  transition: color 0.2s;
+}
+
+.footer button.active {
+  color: #4f46e5;
+  font-weight: bold;
 }

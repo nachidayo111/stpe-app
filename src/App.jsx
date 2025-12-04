@@ -1,16 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./App.css";
-import { db, auth, provider } from "./firebase";
+import shoeChar from "./assets/bed183fd-2ea7-491c-9b9c-2a5e73fc9da8.png";
 
 function App() {
   const [steps, setSteps] = useState(0);
   const [points, setPoints] = useState(0);
-  const [money, setMoney] = useState(0); // 換金額
+  const [money, setMoney] = useState(0);
   const [activeTab, setActiveTab] = useState("home");
-
-  useEffect(() => {
-    console.log(db, auth, provider);
-  }, []);
+  const [username, setUsername] = useState("デモユーザー"); // 初期ユーザー名
+  const [newUsername, setNewUsername] = useState(""); // 入力用
 
   const addSteps = () => setSteps(steps + 100);
 
@@ -39,7 +37,7 @@ function App() {
       return (
         <>
           <div className="card">
-            <p style={{ color: "#000" }}>歩数: {steps}</p>
+            <p>歩数: {steps}</p>
             <div className="progress-container">
               <div
                 className="progress-bar"
@@ -50,10 +48,20 @@ function App() {
               ></div>
             </div>
             <button onClick={addSteps}>100歩増やす</button>
+            {/* テスト用ポイント追加ボタン */}
+            <button
+              style={{ backgroundColor: "#ef4444", marginTop: "0.5rem" }}
+              onClick={() => {
+                setPoints(points + 10000);
+                alert("テスト用に10000ポイント付与しました！");
+              }}
+            >
+              テスト用 +10000ポイント
+            </button>
           </div>
 
           <div className="card">
-            <p style={{ color: "#000" }}>ポイント: {points}</p>
+            <p>ポイント: {points}</p>
             <div className="progress-container">
               <div
                 className="progress-bar"
@@ -76,9 +84,9 @@ function App() {
     } else if (activeTab === "exchange") {
       return (
         <div className="card">
-          <h2 style={{ color: "#000" }}>交換所</h2>
-          <p style={{ color: "#000" }}>ポイント: {points}</p>
-          <p style={{ color: "#000" }}>換金額: {money}円</p>
+          <h2>交換所</h2>
+          <p>ポイント: {points}</p>
+          <p>換金額: {money}円</p>
           {points >= 1000 ? (
             <button
               onClick={() => {
@@ -99,26 +107,72 @@ function App() {
     } else if (activeTab === "account") {
       return (
         <div className="card">
-          <h2 style={{ color: "#000" }}>アカウント情報</h2>
-          <p style={{ color: "#000" }}>ユーザー名: デモユーザー</p>
-          <p style={{ color: "#000" }}>現在の歩数: {steps}</p>
-          <p style={{ color: "#000" }}>ポイント: {points}</p>
-          <p style={{ color: "#000" }}>換金額: {money}円</p>
+          <h2>アカウント情報</h2>
+          <p>ユーザー名: {username}</p>
+          <p>現在の歩数: {steps}</p>
+          <p>ポイント: {points}</p>
+          <p>換金額: {money}円</p>
+
+          <hr style={{ margin: "1rem 0" }} />
+
+          {/* アカウント登録フォーム */}
+          <h3>アカウント登録 / 名前変更</h3>
+          <input
+            type="text"
+            placeholder="新しいユーザー名"
+            value={newUsername}
+            onChange={(e) => setNewUsername(e.target.value)}
+            style={{ padding: "0.5rem", borderRadius: "8px", width: "100%" }}
+          />
+          <button
+            style={{ marginTop: "0.5rem" }}
+            onClick={() => {
+              if (newUsername.trim() === "") {
+                alert("ユーザー名を入力してください");
+                return;
+              }
+              setUsername(newUsername);
+              setNewUsername("");
+              alert("ユーザー名を更新しました！");
+            }}
+          >
+            登録 / 更新
+          </button>
         </div>
       );
     }
   };
 
   return (
-    <div className="App" style={{ position: "relative" }}>
-      {/* 右上に文字として表示 */}
-      <div className="status-label" style={{ color: "#000" }}>
+    <div className="App" style={{ position: "relative", minHeight: "100vh" }}>
+      {/* 背景キャラクター（全画面、うっすら表示） */}
+      <img
+        src={shoeChar}
+        alt="背景キャラクター"
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          opacity: 0.2,
+          zIndex: 0,
+        }}
+      />
+
+      {/* ステータス表示 */}
+      <div className="status-label" style={{ position: "relative", zIndex: 1 }}>
         歩数: {steps} | ポイント: {points} | 換金額: {money}円
       </div>
 
-      <div className="main-content">{renderContent()}</div>
+      {/* メインコンテンツ */}
+      <div className="main-content" style={{ position: "relative", zIndex: 1 }}>
+        {renderContent()}
+      </div>
 
-      <div className="footer">
+      {/* フッター（固定） */}
+      <div className="footer" style={{ zIndex: 1 }}>
         <button
           className={activeTab === "home" ? "active" : ""}
           onClick={() => setActiveTab("home")}
